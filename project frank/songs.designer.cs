@@ -22,6 +22,7 @@ namespace project_frank
 	using System;
 	
 	
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="records")]
 	public partial class songsDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -29,10 +30,13 @@ namespace project_frank
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertTable(Table instance);
+    partial void UpdateTable(Table instance);
+    partial void DeleteTable(Table instance);
     #endregion
 		
-		public songsDataContext(string connection) : 
-				base(connection, mappingSource)
+		public songsDataContext() : 
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["recordsConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -53,6 +57,172 @@ namespace project_frank
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Table> Tables
+		{
+			get
+			{
+				return this.GetTable<Table>();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Table]")]
+	public partial class Table : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID;
+		
+		private int _Nummer;
+		
+		private string _Band;
+		
+		private string _Liedje;
+		
+		private int _Fav;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIDChanging(int value);
+    partial void OnIDChanged();
+    partial void OnNummerChanging(int value);
+    partial void OnNummerChanged();
+    partial void OnBandChanging(string value);
+    partial void OnBandChanged();
+    partial void OnLiedjeChanging(string value);
+    partial void OnLiedjeChanged();
+    partial void OnFavChanging(int value);
+    partial void OnFavChanged();
+    #endregion
+		
+		public Table()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this.OnIDChanging(value);
+					this.SendPropertyChanging();
+					this._ID = value;
+					this.SendPropertyChanged("ID");
+					this.OnIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nummer", DbType="Int NOT NULL")]
+		public int Nummer
+		{
+			get
+			{
+				return this._Nummer;
+			}
+			set
+			{
+				if ((this._Nummer != value))
+				{
+					this.OnNummerChanging(value);
+					this.SendPropertyChanging();
+					this._Nummer = value;
+					this.SendPropertyChanged("Nummer");
+					this.OnNummerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Band", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
+		public string Band
+		{
+			get
+			{
+				return this._Band;
+			}
+			set
+			{
+				if ((this._Band != value))
+				{
+					this.OnBandChanging(value);
+					this.SendPropertyChanging();
+					this._Band = value;
+					this.SendPropertyChanged("Band");
+					this.OnBandChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Liedje", DbType="VarChar(80) NOT NULL", CanBeNull=false)]
+		public string Liedje
+		{
+			get
+			{
+				return this._Liedje;
+			}
+			set
+			{
+				if ((this._Liedje != value))
+				{
+					this.OnLiedjeChanging(value);
+					this.SendPropertyChanging();
+					this._Liedje = value;
+					this.SendPropertyChanged("Liedje");
+					this.OnLiedjeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fav", DbType="Int NOT NULL")]
+		public int Fav
+		{
+			get
+			{
+				return this._Fav;
+			}
+			set
+			{
+				if ((this._Fav != value))
+				{
+					this.OnFavChanging(value);
+					this.SendPropertyChanging();
+					this._Fav = value;
+					this.SendPropertyChanged("Fav");
+					this.OnFavChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
