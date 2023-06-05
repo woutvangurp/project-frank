@@ -46,8 +46,9 @@
                 </button>
                 <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Login.aspx">Login</a></li>
-                        <li class="nav-item"><a class="nav-link" runat="server" href="~/Contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" runat="server" ID="btnLog" href="~/Login.aspx">inloggen</a></li>
+                        <li class="nav-item"><a ID="btnAdmin" class="nav-link" runat="server" href="~/Admin.aspx">Alle platen</a></li>
+                        <asp:LinkButton runat="server" CssClass="nav-item nav-link" Text="Uitloggen" OnClick="logoutClick" Visible="False" ID="btnLogout"/>
                     </ul>
                 </div>
             </div>

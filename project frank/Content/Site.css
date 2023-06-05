@@ -19,3 +19,43 @@ textarea {
         padding: 0;
     }
 }
+
+.addPanel {
+    z-index: 2;
+    position: absolute;
+    top: 101px;
+    left: 10.5vw;
+    right: 10.5vw;
+    visibility: visible;
+    padding: 6px 6px 0 0;
+    text-align: right;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: auto;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.Close {
+    color: red;
+    text-decoration: none;
+}
+.Close :hover {
+    color: black;
+    text-decoration: none;
+}
+
+.tbxempty {
+    background-color: red;
+}.tbxfull {
+    background-color: green;
+}
