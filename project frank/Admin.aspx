@@ -69,6 +69,35 @@
                 </table>
             </asp:Panel>
             
+            <asp:Panel runat="server" ID="pnlEdit" CssClass="addPanel" Visible="False">
+                <asp:LinkButton runat="server" Text="X" CssClass="Close" ID="btnCloseEd" OnClick="btnClose_OnClick"/>
+                <table>
+                    <tr><td>
+                        <asp:Label runat="server" Text="Liedje:"/>
+                    </td><td>
+                        <asp:TextBox runat="server" ID="tbxESong"/>
+                    </td></tr><tr><td>
+                        <asp:Label runat="server" Text="Band:"/>
+                    </td><td>
+                        <asp:TextBox runat="server" ID="tbxEBand"/>
+                    </td></tr><tr><td>
+                        <asp:Label runat="server" Text="Nummer:"/>
+                    </td><td>
+                        <asp:TextBox runat="server" ID="tbxENummer"/>
+                    </td></tr><tr><td>
+                        <asp:Label runat="server" Text="zit het in de jukebox?:"/>
+                    </td><td>
+                        <asp:DropDownList runat="server" ID="ddlEFav">
+                            <asp:ListItem Selected="True" Value="0" Text="Nee"/>
+                            <asp:ListItem Value="1" Text="Ja"/>
+                        </asp:DropDownList>
+                    </td></tr><tr><td colspan="2">
+                        <asp:LinkButton runat="server" Visible="False" Enabled="False" OnClick="btnSend_OnClick" ID="LinkButton2"/><br/>
+                        <asp:LinkButton runat="server" ID="LinkButton3" Text="Versturen" OnClick="btnSend_OnClick"/>
+                    </td></tr>
+                </table>
+            </asp:Panel>
+            
             <asp:Panel runat="server" ID="pnlAlert" CssClass="addPanel" Visible="False">
                 <asp:LinkButton runat="server" Text="X" CssClass="Close" ID="btnCloseAl" OnClick="btnClose_OnClick"/>
                 <asp:Label runat="server" ID="lblAlert"/>

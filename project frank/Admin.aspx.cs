@@ -43,12 +43,31 @@ namespace project_frank
 
         protected void DeleteCLick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            LinkButton lbtn = (LinkButton)sender;
+            int id = int.Parse(lbtn.CommandArgument);
+            bool check = dbFunctions.delSong(id);
+            string checkargument;
+
+            pnlAlert.Visible = true;
+            if (check)
+                checkargument = "Plaat is verwijderd!";
+            else
+                checkargument = "Kon de plaat niet verwijderen";
+            lblAlert.Text = checkargument;
         }
 
         protected void EditClick(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            LinkButton btnEdit = (LinkButton)sender;
+            int id = int.Parse(btnEdit.CommandArgument);
+
+            var edit = dbFunctions.preEditSong(id);
+
+            var row = edit[0];
+            tbxEBand.Text = row.Band;
+            tbxENummer.Text = row.Nummer.ToString();
+            tbxESong.Text = row.Liedje;
+            ddlEFav.SelectedIndex = row.Fav;
         }
 
         protected void allePlaten_OnRowDataBound(object sender, GridViewRowEventArgs e)

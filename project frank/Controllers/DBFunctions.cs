@@ -62,5 +62,19 @@ namespace project_frank.Controllers
             }
             
         }
+
+        public bool delSong(int ID)
+        {
+            var del = db.Tables.Single(u => u.ID == ID);
+            if (del == null) return false;
+            db.Tables.DeleteOnSubmit(del);
+            db.SubmitChanges();
+            return true;
+        }
+
+        public List<Table> preEditSong(int ID)
+        {
+            return (from u in db.Tables where  u.ID == ID select u).ToList();
+        }
     }
 }
